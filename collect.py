@@ -11,6 +11,7 @@ import threading
 def print_log(filename, collector_metric):
     with open(filename, "a") as file:
         json.dump(collector_metric, file)
+        file.write("\n")
 
 if len(sys.argv) != 5:
     print("Usage: python3 collect.py filename tagname interval duration")
