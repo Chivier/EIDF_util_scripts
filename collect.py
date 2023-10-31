@@ -14,7 +14,7 @@ def print_log(filename, collector_str):
 if len(sys.argv) != 5:
     print("Usage: python3 collect.py filename tagname interval duration")
     exit(1)
-    
+
 filename = sys.argv[1]
 tagname = sys.argv[2]
 interval = float(sys.argv[3])
@@ -32,9 +32,9 @@ def run():
             print_log(filename, collector_str)
         else:
             return
-    
+
 # if exists, delete the file
 if os.path.exists(filename):
     os.remove(filename)
-    
+
 run()

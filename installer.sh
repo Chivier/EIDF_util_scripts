@@ -11,4 +11,4 @@ fi
 
 echo "Using $PIP_COMMAND"
 
-$PIP_COMMAND install nvitop
+$PIP_COMMAND install -U nvitop
