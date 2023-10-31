@@ -29,7 +29,7 @@ def run():
         if time.time() - start_time < duartion:
             threading.Timer(interval, run).start()  # schedule the function to run
             collector_metric = collector.collect()
-            collector_str = json.dump(collector_metric)
+            collector_str = json.dump(collector_metric, doublequote=True)
             print_log(filename, collector_str)
         else:
             return
