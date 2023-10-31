@@ -3,6 +3,7 @@ import sys
 import os
 import time
 import logging
+import json
 import threading
 
 # Configure the logger to write to a file
@@ -28,7 +29,7 @@ def run():
         if time.time() - start_time < duartion:
             threading.Timer(interval, run).start()  # schedule the function to run
             collector_metric = collector.collect()
-            collector_str = str(collector_metric)
+            collector_str = json.dump(collector_metric)
             print_log(filename, collector_str)
         else:
             return
