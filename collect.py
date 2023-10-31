@@ -8,9 +8,9 @@ import threading
 
 # Configure the logger to write to a file
 
-def print_log(filename, collector_str):
+def print_log(filename, collector_metric):
     with open(filename, "a") as file:
-        file.write(collector_str + "\n")
+        json.dump(collector_metric, file)
 
 if len(sys.argv) != 5:
     print("Usage: python3 collect.py filename tagname interval duration")
@@ -29,8 +29,7 @@ def run():
         if time.time() - start_time < duartion:
             threading.Timer(interval, run).start()  # schedule the function to run
             collector_metric = collector.collect()
-            collector_str = json.dump(collector_metric, doublequote=True)
-            print_log(filename, collector_str)
+            print_log(filename, collector_metric)
         else:
             return
 

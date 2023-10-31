@@ -8,8 +8,15 @@ DURATION=10
 while IFS= read -r podname
 do
     echo "$podname"
-    kubectl exec $podname -- rm /tmp/log.txt > /dev/null 2>&1 &
-    kubectl exec $podname -- python3 /tmp/collect.py /tmp/$FILENAME $TAG $INTERVAL $DURATION > /dev/null 2>&1 &
+    kubectl cp collect.py $podname:/tmp
+done < "pod-list.txt"
+
+
+while IFS= read -r podname
+do
+    echo "$podname"
+    kubectl exec $podname -- rm /tmp/log.txt
+    kubectl exec $podname -- python3 /tmp/collect.py /tmp/log.txt $TAG $INTERVAL $DURATION > /dev/null 2>&1 &
 done < "pod-list.txt"
 sleep $DURATION
 
