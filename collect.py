@@ -33,8 +33,4 @@ def run():
         else:
             return
 
-# if exists, delete the file
-if os.path.exists(filename):
-    os.remove(filename)
-
 run()
